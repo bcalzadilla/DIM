@@ -104,15 +104,6 @@
         android:layout_below="@+id/imageButton4"
         android:layout_alignStart="@+id/imageButton4" />
 
-    <ImageButton
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/imageButton3"
-        android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/finalwarning"
-        android:scaleType="fitXY" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
