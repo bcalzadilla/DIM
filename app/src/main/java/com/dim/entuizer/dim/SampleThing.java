@@ -25,14 +25,12 @@ import java.util.Locale;
 
 @ThingworxPropertyDefinitions(properties = {
         @ThingworxPropertyDefinition(name="serialNumber", description="Device Serial Number", baseType="STRING", category="", aspects={"isReadOnly:false", "defaultValue:1111111"}),
-        @ThingworxPropertyDefinition(name="count", description="sample number field", baseType="NUMBER", category="", aspects={"isReadOnly:false"})
+        @ThingworxPropertyDefinition(name="count", description="sample number field", baseType="NUMBER", category="", aspects={"isReadOnly:false"}),
 })
 public class SampleThing extends VirtualThing {
 
-    String Direccion;
     double count = 0.0;
     int scanCount = 0;
-    double latitud, longitud;
 
     public SampleThing(String name, String description, ConnectedThingClient client) throws Exception {
         super(name, description, client);
@@ -44,18 +42,18 @@ public class SampleThing extends VirtualThing {
     }
 
 
+
     /**
      * The application that binds this Thing to its connection is responsible for calling this method
      * periodically to allow this Thing to generate simulated data. If your application generates
      * data instead of simulating it, your would update your properties when new data is available
      * and then call updateSubscribedProperties() to push these values to the server. This method
      * can also be used to poll your hardware if it does not deliver its own data asynchronously.
-     *
      * @throws Exception
      */
     @Override
     public void processScanRequest() throws Exception {
-        count++;
+        count ++;
         setProperty("count", count);
         updateSubscribedProperties(15000);
     }
@@ -64,18 +62,18 @@ public class SampleThing extends VirtualThing {
     /**
      * This sample method will be available to be bound and can be called from the server.
      * It adds its two parameters together and returns the result.
-     *
      * @param a the first addend
      * @param b the second addend
      * @return the sum of a + b
      * @throws Exception
      */
-    @ThingworxServiceDefinition(name = "AddNumbers", description = "Add Two Numbers")
-    @ThingworxServiceResult(name = "result", description = "Result", baseType = "NUMBER")
+    @ThingworxServiceDefinition( name="AddNumbers", description="Add Two Numbers")
+    @ThingworxServiceResult( name="result", description="Result", baseType="NUMBER" )
     public Double AddNumbers(
-            @ThingworxServiceParameter(name = "a", description = "Value 1", baseType = "NUMBER") Double a,
-            @ThingworxServiceParameter(name = "b", description = "Value 2", baseType = "NUMBER") Double b) throws Exception {
+            @ThingworxServiceParameter( name="a", description="Value 1", baseType="NUMBER" ) Double a,
+            @ThingworxServiceParameter( name="b", description="Value 2", baseType="NUMBER" ) Double b) throws Exception {
 
         return a + b;
     }
+
 }
